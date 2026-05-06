@@ -208,6 +208,42 @@
             color: white;
         }
 
+        /* Bouton désactivé (RGPD en cours) */
+        .btn-disabled {
+            background-color: #ccc;
+            color: #888;
+            cursor: not-allowed;
+            box-shadow: none;
+            position: relative;
+        }
+
+        .btn-disabled:hover {
+            background-color: #ccc;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-disabled::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neutral-dark);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-disabled:hover::after {
+            opacity: 1;
+        }
+
         .hero-image {
             position: absolute;
             top: 50%;
@@ -502,6 +538,13 @@
             transform: translateY(-3px);
         }
 
+        .footer-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -611,25 +654,22 @@
             <div class="hero-content">
                 <h1>Bonjour, je suis <span>Coeurly ONGOLO</span></h1>
                 <div class="subtitle">Technicienne Systèmes et Réseaux</div>
-                <p> Technicienne Systèmes et Réseaux. Je m'occupe de l'installation, de la configuration et de la maintenance des infrastructures informatiques, que ce soit les serveurs, les postes clients ou les équipements réseau. J'aime particulièrement travailler sur la résolution de problèmes et l'optimisation des systèmes pour assurer la disponibilité et la sécurité des services.</p>
+                <p>Technicienne Systèmes et Réseaux. Je m'occupe de l'installation, de la configuration et de la maintenance des infrastructures informatiques, que ce soit les serveurs, les postes clients ou les équipements réseau. J'aime particulièrement travailler sur la résolution de problèmes et l'optimisation des systèmes pour assurer la disponibilité et la sécurité des services.</p>
+
+                <!-- ✅ CORRIGÉ : tous les boutons sont bien dans .hero-btns -->
                 <div class="hero-btns">
-                    
+                    <a href="projets.html" class="btn">
+                        <i class="fas fa-rocket"></i>
+                        Voir mes projets
+                    </a>
+                    <a href="Tableau-de-Synthese.pdf" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-file-alt"></i>
+                        Voir mon Tableau de Synthèse
+                    </a>
                 </div>
-                <a href="projets.html" class="btn">
-                    <i class="fas fa-rocket"></i>
-                     Voir mes projets
-                </a>
-
-                <a href="Tableau-de-Synthèse.pdf" target="_blank" class="btn">
-                     Voir mon Tableau de Synthèse
-                </a>
-
-                
             </div>
         </div>
-        <div class="hero-image">
-            <!-- Image ou illustration pourrait être ajoutée ici -->
-        </div>
+        <div class="hero-image"></div>
         <div class="floating-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -643,14 +683,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>BTS SIO</h2>
-                    <p>
-BTS SIO
-Option SLAM (Solutions Logicielles et Applications Métiers),
-
-Option SISR (Solutions d'Infrastructure, Systèmes et Réseaux)
-
-et  Cybersécurité dans le BTS SIO</p>
-                    <p>J'apprécie analyser les incidents et mettre en place des solutions durables..</p>
+                    <p>BTS SIO — Option SLAM (Solutions Logicielles et Applications Métiers), Option SISR (Solutions d'Infrastructure, Systèmes et Réseaux) et Cybersécurité dans le BTS SIO.</p>
+                    <p>J'apprécie analyser les incidents et mettre en place des solutions durables.</p>
                     <div class="about-stats">
                         <div class="stat-item">
                             <div class="stat-number">2+</div>
@@ -662,14 +696,9 @@ et  Cybersécurité dans le BTS SIO</p>
                         </div>
                     </div>
                 </div>
-                <div class="about-image">
-                    <!-- Espace pour une photo ou illustration -->
-                </div>
+                <div class="about-image"></div>
             </div>
         </div>
-        
-
-        
     </section>
 
     <!-- Section Services -->
@@ -677,7 +706,7 @@ et  Cybersécurité dans le BTS SIO</p>
         <div class="container">
             <div class="section-title">
                 <h2>Mes Domaines d'Expertise</h2>
-                <p>Des Infrastuctures optimisées pour répondre à vos besoins</p>
+                <p>Des infrastructures optimisées pour répondre à vos besoins</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
@@ -691,7 +720,7 @@ et  Cybersécurité dans le BTS SIO</p>
                     <div class="service-icon">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h3>Administration Systèmes </h3>
+                    <h3>Administration Systèmes</h3>
                     <p>Installation, configuration et sécurisation de serveurs (Linux/Windows). Automatisation des déploiements et optimisation des performances système.</p>
                 </div>
                 <div class="service-card">
@@ -699,7 +728,7 @@ et  Cybersécurité dans le BTS SIO</p>
                         <i class="fas fa-mobile-alt"></i>
                     </div>
                     <h3>Maintien en Condition Opérationnelle (MCO)</h3>
-                    <p> Diagnostic et dépannage. Analyse de logs, gestion des alertes de monitoring et rétablissement des services critiques dans le respect des SLA.</p>
+                    <p>Diagnostic et dépannage. Analyse de logs, gestion des alertes de monitoring et rétablissement des services critiques dans le respect des SLA.</p>
                 </div>
             </div>
         </div>
@@ -745,14 +774,18 @@ et  Cybersécurité dans le BTS SIO</p>
                 <div class="footer-section">
                     <h3>Disponibilité</h3>
                     <p>Disponible à partir de Septembre 2026.</p>
-                    <a href="contact.html" class="btn" style="margin-top: 15px;">
-                        <i class="fas fa-paper-plane"></i>
-                        Discutons de votre projet
-                    </a>
-
-                    <a href="Fichiers/RGPD.pdf" target="_blank" class="btn">
-                     RGPD
-                    </a>
+                    <div class="footer-btns">
+                        <!-- ✅ CORRIGÉ : mailto: au lieu de contact.html inexistant -->
+                        <a href="mailto:honoreecoeurly@gmail.com?subject=Projet%20-%20Prise%20de%20contact" class="btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Discutons de votre projet
+                        </a>
+                        <!-- ✅ CORRIGÉ : bouton désactivé avec tooltip -->
+                        <span class="btn btn-disabled" data-tooltip="En cours de préparation">
+                            <i class="fas fa-shield-alt"></i>
+                            RGPD
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -762,7 +795,6 @@ et  Cybersécurité dans le BTS SIO</p>
     </footer>
 
     <script>
-        // Menu hamburger pour mobile
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -771,7 +803,6 @@ et  Cybersécurité dans le BTS SIO</p>
             navLinks.classList.toggle('active');
         });
 
-        // Fermer le menu en cliquant sur un lien
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -779,7 +810,6 @@ et  Cybersécurité dans le BTS SIO</p>
             });
         });
 
-        // Animation au défilement pour la navbar
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
@@ -791,7 +821,6 @@ et  Cybersécurité dans le BTS SIO</p>
             }
         });
 
-        // Animation des statistiques
         const observerOptions = {
             threshold: 0.5,
             rootMargin: '0px 0px -50px 0px'
