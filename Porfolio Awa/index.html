@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sophie Martin - Développeuse Full Stack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B8B;
+            --secondary: #6A5ACD;
+            --accent: #20B2AA;
+            --neutral-light: #FDF6FA;
+            --neutral-dark: #2D2B42;
+            --neutral-medium: #8A7F9B;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-dark);
+            background-color: var(--neutral-light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header et Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--neutral-dark);
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--neutral-dark);
+            transition: var(--transition);
+        }
+
+        /* Section Hero */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--neutral-light) 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--neutral-dark);
+            line-height: 1.1;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(255, 107, 139, 0.2);
+            z-index: -1;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--neutral-medium);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 45%;
+            height: 80%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 30% 0 0 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            bottom: 50px;
+            right: 100px;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        .shape-1 {
+            width: 150px;
+            height: 150px;
+            background-color: var(--primary);
+            top: 10%;
+            right: 20%;
+        }
+
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            background-color: var(--secondary);
+            top: 60%;
+            right: 10%;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            background-color: var(--accent);
+            bottom: 20%;
+            right: 30%;
+        }
+
+        /* Section À Propos */
+        #about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--neutral-dark);
+        }
+
+        .about-text p {
+            color: var(--neutral-medium);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--neutral-light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--neutral-medium);
+            font-weight: 500;
+        }
+
+        /* Section Services */
+        #services {
+            padding: 100px 0;
+            background: var(--neutral-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--neutral-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            color: var(--neutral-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--neutral-medium);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--neutral-dark) 0%, #1a1a2e 100%);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-image {
+                display: none;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                text-align: center;
+                gap: 15px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header et Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    SophieMartin
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="compétences.html">Compétences</a></li>
+                    <li><a href="veille.html">Veille</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Bonjour, je suis <span>Sophie Martin</span></h1>
+                <div class="subtitle">Développeuse Full Stack Passionnée</div>
+                <p>Je crée des expériences digitales innovantes et fonctionnelles en combinant créativité et expertise technique pour donner vie à vos projets les plus ambitieux.</p>
+                <div class="hero-btns">
+                    <a href="projets.html" class="btn">
+                        <i class="fas fa-rocket"></i>
+                        Voir mes projets
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Me contacter
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Image ou illustration pourrait être ajoutée ici -->
+        </div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Section À Propos -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>À Propos de Moi</h2>
+                    <p>Développeuse full stack passionnée avec plus de 5 ans d'expérience dans la création d'applications web modernes et performantes. Je m'épanouis dans la résolution de problèmes complexes et l'innovation technologique.</p>
+                    <p>Spécialisée dans les écosystèmes JavaScript et Python, je maîtrise les dernières technologies et frameworks tout en maintenant une attention particulière sur l'expérience utilisateur et les bonnes pratiques de développement.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Années d'expérience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projets réalisés</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Technologies maîtrisées</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">Clients satisfaits</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Espace pour une photo ou illustration -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Domaines d'Expertise</h2>
+                <p>Des solutions sur mesure pour répondre à vos besoins</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Développement Frontend</h3>
+                    <p>Création d'interfaces utilisateur modernes, responsives et accessibles avec les dernières technologies frontend.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Développement Backend</h3>
+                    <p>Conception et développement d'APIs robustes, de bases de données et d'architectures serveur performantes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Applications Mobile</h3>
+                    <p>Développement d'applications mobiles cross-platform avec React Native pour iOS et Android.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="projets.html">Projets</a></li>
+                        <li><a href="competences.html">Compétences</a></li>
+                        <li><a href="veille.html">Veille Technologique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            sophie.martin@email.com
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            +33 1 23 45 67 89
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Paris, France
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Disponibilité</h3>
+                    <p>Je suis actuellement disponible pour des missions freelance et des opportunités de collaboration intéressantes.</p>
+                    <a href="contact.html" class="btn" style="margin-top: 15px;">
+                        <i class="fas fa-paper-plane"></i>
+                        Discutons de votre projet
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Sophie Martin. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu hamburger pour mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu en cliquant sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animation au défilement pour la navbar
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.08)';
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Animation des statistiques
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stats = document.querySelectorAll('.stat-number');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        let current = 0;
+                        const increment = target / 50;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                stat.textContent = target + '+';
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current) + '+';
+                            }
+                        }, 30);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const aboutSection = document.querySelector('#about');
+        statsObserver.observe(aboutSection);
+    </script>
+</body>
+</html>
