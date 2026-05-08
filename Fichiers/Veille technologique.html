@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veille Technologique - Sécurité & Vulnérabilités Google</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
+            --dark-blue: #1a237e;
+            --text-main: #3c4043;
+            --bg-body: #f1f3f4;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            line-height: 1.8;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(60,64,67,0.3);
+        }
+
+        /* Header & Navigation */
+        .header-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .back-btn { text-decoration: none; color: var(--google-blue); font-weight: 500; display: flex; align-items: center; gap: 8px; }
+
+        /* Typography */
+        h1 { font-size: 2.2rem; color: #202124; margin-bottom: 10px; text-align: center; }
+        .subtitle { text-align: center; color: var(--google-blue); font-weight: bold; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { color: var(--dark-blue); border-left: 5px solid var(--google-red); padding-left: 15px; margin-top: 50px; font-size: 1.6rem; }
+        h3 { color: var(--google-blue); margin-top: 30px; }
+
+        /* Mise en contexte box */
+        .intro-section {
+            background: #f8f9fa;
+            border: 1px solid #dadce0;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        /* Impact Grid */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .impact-card {
+            background: white;
+            border: 1px solid #e8eaed;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        .impact-card:hover { border-color: var(--google-blue); background: #fdfdfd; }
+        .impact-card i { font-size: 1.5rem; color: var(--google-yellow); margin-bottom: 10px; }
+
+        /* Methodology */
+        .methodo-list { list-style: none; padding: 0; }
+        .methodo-list li { 
+            margin-bottom: 15px; 
+            padding-left: 30px; 
+            position: relative; 
+        }
+        .methodo-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--google-green);
+        }
+
+        footer { text-align: center; margin-top: 60px; color: #70757a; font-size: 0.9rem; border-top: 1px solid #dadce0; padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-nav">
+        <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> Retour au Portfolio</a>
+        <span>BTS SIO - Option SISR</span>
+    </div>
+
+    <h1>Gestion des Vulnérabilités : L'écosystème Google</h1>
+    <div class="subtitle">Veille Technologique 2024 - 2026</div>
+
+    <!-- 1. INTRODUCTION -->
+    <div class="intro-section">
+        <h2><i class="fas fa-info-circle"></i> 1. Introduction & Périmètre</h2>
+        <p>
+            Avec plus de 90% de parts de marché sur la recherche web et un système Android présent sur 3 milliards d'appareils, Google représente le socle de l'Internet moderne. Cette omniprésence transforme chaque faille logicielle en un risque <strong>systémique</strong>. 
+        </p>
+        <p>
+            <strong>Problématique :</strong> Dans un monde de plus en plus interconnecté, comment Google anticipe-t-il les failles critiques (Zero-Day) pour protéger l'intégrité des données à l'échelle mondiale ?
+        </p>
+    </div>
+
+    <!-- 2. IMPACT MONDIAL -->
+    <section>
+        <h2><i class="fas fa-exclamation-triangle"></i> 2. Impact mondial des vulnérabilités</h2>
+        <p>Une faille chez Google ne touche pas seulement un utilisateur, elle impacte l'économie numérique globale :</p>
+        
+        <div class="impact-grid">
+            <div class="impact-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Impact Économique</h3>
+                <p>Une interruption de service sur <strong>Google Cloud (GCP)</strong> par une faille d'isolation peut paralyser des milliers de banques et de services publics dépendant de cette infrastructure.</p>
+            </div>
+            <div class="impact-card">
+                <i class="fas fa-user-secret"></i>
+                <h3>Impact Sécuritaire</h3>
+                <p>Les failles d'élévation de privilèges sur <strong>Android</strong> sont la cible prioritaire des logiciels espions (ex: Pegasus), menaçant la confidentialité des communications mondiales.</p>
+            </div>
+            <div class="impact-card">
+                <i class="fas fa-server"></i>
+                <h3>Impact Infrastructure</h3>
+                <p>Google gère des protocoles clés (QUIC, HTTPS). Une vulnérabilité dans leur implémentation fragilise la sécurité de l'ensemble du trafic web mondial.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ANALYSE TECHNIQUE -->
+    <section>
+        <h2><i class="fas fa-microchip"></i> 3. Analyse des vecteurs d'attaque</h2>
+        <p>Ma veille se structure autour de trois axes techniques majeurs :</p>
+        
+        <h3>A. Le moteur JavaScript V8 (Chrome)</h3>
+        <p>C'est l'un des composants les plus complexes au monde. Ma veille suit les failles de type <em>"Use-After-Free"</em> qui permettent l'exécution de code à distance directement via le navigateur.</p>
+
+        <h3>B. La sécurité de la Supply Chain</h3>
+        <p>Google s'appuie massivement sur l'Open Source. Je surveille comment l'entreprise sécurise ses dépendances pour éviter qu'une faille dans une bibliothèque tierce n'infecte ses produits finaux.</p>
+    </section>
+
+    <!-- 4. MÉTHODOLOGIE -->
+    <section>
+        <h2><i class="fas fa-search"></i> 4. Méthodologie de veille</h2>
+        <p>Pour maintenir une information à jour, j'utilise les sources stratégiques suivantes :</p>
+        <ul class="methodo-list">
+            <li><strong>Google Project Zero :</strong> Suivi des rapports de l'équipe de recherche d'élite de Google (détection proactive).</li>
+            <li><strong>CVE Details & NIST :</strong> Analyse technique des scores de criticité (CVSS) attribués aux nouvelles failles.</li>
+            <li><strong>Plateformes de Bug Bounty :</strong> Observation des rapports de vulnérabilités récompensées par Google (plus de 10M$ versés en 2023).</li>
+        </ul>
+    </section>
+
+    <!-- 5. CONCLUSION -->
+    <section>
+        <h2><i class="fas fa-check-circle"></i> 5. Synthèse & Perspectives</h2>
+        <p>
+            Cette veille démontre que la sécurité n'est pas un état figé mais un processus continu. La stratégie de Google, basée sur la <strong>transparence</strong> et la <strong>collaboration</strong> avec les chercheurs indépendants, est devenue un standard dans l'industrie SISR pour limiter l'impact des cyberattaques.
+        </p>
+    </section>
+
+    <footer>
+        Page réalisée par Coeurly ONGOLO dans le cadre du BTS SIO - &copy; 2026
+    </footer>
+</div>
+
+</body>
+</html>
