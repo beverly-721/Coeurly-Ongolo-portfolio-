@@ -37,7 +37,7 @@
             padding: 0 20px;
         }
 
-        /* Header et Navigation */
+        /* ── Header & Nav ── */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow);
@@ -63,10 +63,7 @@
             align-items: center;
         }
 
-        .logo i {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
+        .logo i { margin-right: 10px; font-size: 1.5rem; }
 
         .nav-links {
             display: flex;
@@ -94,14 +91,10 @@
         }
 
         .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
+        .nav-links a.active::after { width: 100%; }
 
         .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-        }
+        .nav-links a.active { color: var(--primary); }
 
         .hamburger {
             display: none;
@@ -117,7 +110,7 @@
             transition: var(--transition);
         }
 
-        /* Section Hero Veille */
+        /* ── Hero ── */
         #veille-hero {
             padding: 150px 0 80px;
             background: linear-gradient(135deg, var(--neutral-light) 0%, #ffffff 100%);
@@ -130,9 +123,7 @@
             color: var(--neutral-dark);
         }
 
-        .hero-content h1 span {
-            color: var(--primary);
-        }
+        .hero-content h1 span { color: var(--primary); }
 
         .hero-content p {
             font-size: 1.2rem;
@@ -141,6 +132,7 @@
             margin: 0 auto 30px;
         }
 
+        /* ── Bouton universel ── */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -150,6 +142,7 @@
             color: white;
             border-radius: 30px;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
@@ -163,12 +156,19 @@
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        /* Section Méthodologie */
-        #methodologie {
-            padding: 80px 0;
-            background: white;
+        /* Variante outline */
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* ── Section commune ── */
         .section-title {
             text-align: center;
             margin-bottom: 60px;
@@ -181,14 +181,27 @@
             margin-bottom: 15px;
         }
 
+        .section-title p {
+            color: var(--neutral-medium);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .section-title::after {
             content: '';
             display: block;
             width: 80px;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
-            margin: 0 auto;
+            margin: 15px auto 0;
             border-radius: 2px;
+        }
+
+        /* ── Méthodologie ── */
+        #methodologie {
+            padding: 80px 0;
+            background: white;
         }
 
         .methodologie-grid {
@@ -233,7 +246,7 @@
             line-height: 1.6;
         }
 
-        /* Section Articles */
+        /* ── Articles ── */
         #articles {
             padding: 80px 0;
             background: var(--neutral-light);
@@ -278,6 +291,8 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .veille-card:hover {
@@ -285,9 +300,7 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .veille-header {
-            padding: 25px 25px 0;
-        }
+        .veille-header { padding: 25px 25px 0; }
 
         .veille-category {
             display: inline-block;
@@ -303,7 +316,7 @@
         .veille-card h3 {
             color: var(--neutral-dark);
             margin-bottom: 15px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             line-height: 1.4;
         }
 
@@ -311,52 +324,70 @@
             display: flex;
             justify-content: space-between;
             color: var(--neutral-medium);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 15px;
         }
 
         .veille-content {
             padding: 0 25px 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .veille-content p {
             color: var(--neutral-medium);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.6;
+            flex: 1;
         }
 
         .veille-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
 
         .tag {
             background-color: var(--neutral-light);
-            padding: 5px 12px;
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--neutral-dark);
         }
 
+        /* Lien "Lire l'article" harmonisé comme un bouton outline */
         .veille-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            margin-top: 18px;
+            padding: 9px 20px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
             color: var(--primary);
             font-weight: 500;
+            font-size: 0.9rem;
             text-decoration: none;
-            margin-top: 15px;
             transition: var(--transition);
+            align-self: flex-start;
         }
 
         .veille-link:hover {
-            color: var(--secondary);
+            background-color: var(--primary);
+            color: white;
             gap: 12px;
+            transform: translateY(-2px);
         }
 
-        /* Section Outils */
+        /* Bouton "Voir mon sujet de veille" centré */
+        .veille-cta {
+            text-align: center;
+            margin: 50px 0 0;
+        }
+
+        /* ── Outils ── */
         #outils {
             padding: 80px 0;
             background: white;
@@ -368,9 +399,7 @@
             gap: 40px;
         }
 
-        .tool-category {
-            margin-bottom: 40px;
-        }
+        .tool-category { margin-bottom: 10px; }
 
         .tool-category h3 {
             color: var(--secondary);
@@ -381,14 +410,9 @@
             gap: 10px;
         }
 
-        .tool-category h3 i {
-            color: var(--primary);
-        }
+        .tool-category h3 i { color: var(--primary); }
 
-        .tool-items {
-            display: grid;
-            gap: 15px;
-        }
+        .tool-items { display: grid; gap: 15px; }
 
         .tool-item {
             display: flex;
@@ -407,8 +431,8 @@
         }
 
         .tool-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: 50%;
             display: flex;
@@ -416,20 +440,28 @@
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .tool-info h4 {
             color: var(--neutral-dark);
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             font-size: 1rem;
         }
 
         .tool-info p {
             color: var(--neutral-medium);
+            font-size: 0.82rem;
+            margin-bottom: 8px;
+        }
+
+        /* Petit bouton dans les outils */
+        .tool-info .btn {
+            padding: 6px 16px;
             font-size: 0.8rem;
         }
 
-        /* Section Tendances */
+        /* ── Tendances ── */
         #tendances {
             padding: 80px 0;
             background: var(--neutral-light);
@@ -471,19 +503,13 @@
             justify-content: center;
             color: white;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .tendance-card h3 {
-            color: var(--neutral-dark);
-            margin-bottom: 10px;
-        }
+        .tendance-card h3 { color: var(--neutral-dark); margin-bottom: 10px; }
+        .tendance-card p  { color: var(--neutral-medium); line-height: 1.6; }
 
-        .tendance-card p {
-            color: var(--neutral-medium);
-            line-height: 1.6;
-        }
-
-        /* Footer */
+        /* ── Footer ── */
         footer {
             background: linear-gradient(135deg, var(--neutral-dark) 0%, #1a1a2e 100%);
             color: white;
@@ -514,47 +540,31 @@
             background-color: var(--primary);
         }
 
-        .footer-links {
-            list-style: none;
-        }
+        .footer-links { list-style: none; }
 
-        .footer-links li {
-            margin-bottom: 12px;
-        }
+        .footer-links li { margin-bottom: 12px; }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255,255,255,0.7);
             transition: var(--transition);
             text-decoration: none;
         }
 
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
 
-        .contact-info {
-            list-style: none;
-        }
+        .contact-info { list-style: none; }
 
         .contact-info li {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255,255,255,0.7);
         }
 
-        .contact-info i {
-            color: var(--accent);
-            width: 20px;
-        }
+        .contact-info i { color: var(--accent); width: 20px; }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
 
         .social-links a {
             display: inline-flex;
@@ -562,27 +572,38 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
             transition: var(--transition);
             text-decoration: none;
         }
 
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
+        .social-links a:hover { background-color: var(--primary); transform: translateY(-3px); }
+
+        .footer-newsletter p { color: rgba(255,255,255,0.7); margin-bottom: 15px; }
+
+        .newsletter-form { display: flex; flex-direction: column; gap: 10px; }
+
+        .newsletter-form input {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
         }
+
+        .newsletter-form .btn { justify-content: center; }
 
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255,255,255,0.6);
         }
 
-        /* Responsive */
+        /* ── Responsive ── */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -598,71 +619,44 @@
                 gap: 15px;
             }
 
-            .nav-links.active {
-                display: flex;
-            }
+            .nav-links.active { display: flex; }
 
-            .hamburger {
-                display: flex;
-            }
+            .hamburger { display: flex; }
 
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
+            .hero-content h1 { font-size: 2.2rem; }
 
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
+            .filters { flex-direction: column; align-items: center; }
+            .filter-btn { width: 220px; text-align: center; }
 
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .filters {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .filter-btn {
-                width: 200px;
-                text-align: center;
-            }
-
-            .veille-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tendances-grid {
-                grid-template-columns: 1fr;
-            }
+            .veille-grid        { grid-template-columns: 1fr; }
+            .tools-grid         { grid-template-columns: 1fr; }
+            .tendances-grid     { grid-template-columns: 1fr; }
+            .methodologie-grid  { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Header et Navigation -->
+
+    <!-- ── Header ── -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">
                     <i class="fas fa-code"></i>
-                    Coeurly Honorée 
+                    Coeurly Honorée
                 </div>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="projets.html">Projets</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
                     <li><a href="competences.html">Compétences</a></li>
                     <li><a href="veille.html" class="active">Veille</a></li>
                 </ul>
-                <div class="hamburger">
+                <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -671,54 +665,48 @@
         </div>
     </header>
 
-    <!-- Section Hero Veille -->
+    <!-- ── Hero ── -->
     <section id="veille-hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Veille <span>Technologique</span></h1>
                 <p>Les failles technologiques Google</p>
-                <a href="" class="btn">
+                <a href="#articles" class="btn">
                     <i class="fas fa-newspaper"></i>
-                    Voir les articles 
+                    Voir les articles
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Section Méthodologie -->
+    <!-- ── Méthodologie ── -->
     <section id="methodologie">
         <div class="container">
             <div class="section-title">
                 <h2>Ma Méthodologie de Veille</h2>
-                <p>Google alert est un outil dont je me sert afin d'avoir les dernières actualités sur les failles technologiques chez Google</p>
+                <p>Google Alert est un outil dont je me sers afin d'avoir les dernières actualités sur les failles technologiques chez Google.</p>
             </div>
             <div class="methodologie-grid">
                 <div class="method-card">
-                    <div class="method-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
+                    <div class="method-icon"><i class="fas fa-search"></i></div>
                     <h3>Recherche Active</h3>
                     <p>Surveillance quotidienne des sources spécialisées, blogs techniques et plateformes de veille.</p>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
+                    <div class="method-icon"><i class="fas fa-network-wired"></i></div>
                     <h3>Réseaux Professionnels</h3>
-                    <p>Participation active aux communautés en ligne et échanges avec des experts du secteur via Linkedin .</p>
+                    <p>Participation active aux communautés en ligne et échanges avec des experts du secteur via LinkedIn.</p>
                 </div>
                 <div class="method-card">
-                    <div class="method-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
+                    <div class="method-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Analyse des Tendances</h3>
-                    <p>Étude des rapports market et analyse des technologies émergentes pour anticiper les évolutions.</p>
+                    <p>Étude des rapports marché et analyse des technologies émergentes pour anticiper les évolutions.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section Articles -->
+    <!-- ── Articles ── -->
     <section id="articles">
         <div class="container">
             <div class="section-title">
@@ -729,172 +717,172 @@
             <!-- Filtres -->
             <div class="filters">
                 <button class="filter-btn active" data-filter="all">Tous</button>
-                <button class="filter-btn" data-filter="ai">Failles de sécurité</button>
-                <button class="filter-btn" data-filter="web">Bonnes pratiques </button>
-                <button class="filter-btn" data-filter="cloud">Solutions d'incidents</button>
-                <button class="filter-btn" data-filter="mobile">Outils quotidiens</button>
+                <button class="filter-btn" data-filter="failles">Failles de sécurité</button>
+                <button class="filter-btn" data-filter="bonnes-pratiques">Bonnes pratiques</button>
+                <button class="filter-btn" data-filter="solutions">Solutions d'incidents</button>
+                <button class="filter-btn" data-filter="outils">Outils quotidiens</button>
             </div>
 
-            <!-- Articles -->
+            <!-- Grille d'articles -->
             <div class="veille-grid">
+
                 <!-- Article 1 -->
-                <div class="veille-card" data-category="ai">
+                <div class="veille-card" data-category="failles">
                     <div class="veille-header">
                         <span class="veille-category">Failles de sécurité</span>
                         <h3>Google Discovers iOS Vulnerability Chain</h3>
                         <div class="veille-meta">
-                            <span>03/20/2026</span>
-                            <span>8 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 20 mars 2026</span>
+                            <span><i class="fas fa-clock"></i> 8 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Google révèle une chaîne de vulnérabilités iOS baptisée DarkSword, ciblant les portefeuilles de cryptomonnaies via plusieurs failles enchaînées.</p>
                         <div class="veille-tags">
-                            <span class="tag"></span>
-                            <span class="tag"></span>
-                            <span class="tag"></span>
+                            <span class="tag">iOS</span>
+                            <span class="tag">Sécurité</span>
+                            <span class="tag">Crypto</span>
                         </div>
-                        <a href="https://www.kucoin.com/news/flash/google-discovers-ios-vulnerability-chain-darksword-targeting-crypto-wallets?lang=en_US" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="https://www.kucoin.com/news/flash/google-discovers-ios-vulnerability-chain-darksword-targeting-crypto-wallets?lang=en_US"
+                           class="veille-link" target="_blank" rel="noopener">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Article 2 -->
-                <div class="veille-card" data-category="web">
+                <div class="veille-card" data-category="solutions">
                     <div class="veille-header">
                         <span class="veille-category">Solutions d'incidents</span>
                         <h3>Chrome corrige 26 failles de sécurité</h3>
                         <div class="veille-meta">
-                            <span>20 Mars 2026</span>
-                            <span>6 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 20 mars 2026</span>
+                            <span><i class="fas fa-clock"></i> 6 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Google publie une mise à jour majeure de Chrome qui corrige 26 vulnérabilités, dont plusieurs critiques permettant l'exécution de code à distance.</p>
                         <div class="veille-tags">
-                            <span class="tag"></span>
-                            <span class="tag"></span>
-                            <span class="tag"></span>
+                            <span class="tag">Chrome</span>
+                            <span class="tag">Patch</span>
+                            <span class="tag">CVE</span>
                         </div>
-                        <a href="https://www.kucoin.com/news/flash/google-discovers-ios-vulnerability-chain-darksword-targeting-crypto-wallets?lang=en_US" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="https://www.kucoin.com/news/flash/google-discovers-ios-vulnerability-chain-darksword-targeting-crypto-wallets?lang=en_US"
+                           class="veille-link" target="_blank" rel="noopener">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Article 3 -->
-                <div class="veille-card" data-category="cloud">
+                <div class="veille-card" data-category="bonnes-pratiques">
                     <div class="veille-header">
-                        <span class="veille-category">Bonnes pratiques </span>
-                        <h3>Mise à jour de sécurité</h3>
+                        <span class="veille-category">Bonnes pratiques</span>
+                        <h3>Mise à jour de sécurité urgente pour 3,5 milliards d'utilisateurs Chrome</h3>
                         <div class="veille-meta">
-                            <span>16 mars 2026</span>
-                            <span>10 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 16 mars 2026</span>
+                            <span><i class="fas fa-clock"></i> 10 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Les utilisateurs de Google Chrome sont invités à mettre à jour leur navigateur sans délai suite à la découverte de vulnérabilités exploitées activement.</p>
                         <div class="veille-tags">
-                            <span class="tag"></span>
-                            <span class="tag"></span>
-                            <span class="tag"></span>
+                            <span class="tag">Chrome</span>
+                            <span class="tag">Mise à jour</span>
+                            <span class="tag">Urgence</span>
                         </div>
-                        <a href="https://www.vietnam.vn/fr/3-5-ty-nguoi-dung-google-chrome-can-lam-viec-nay-khan-cap" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="https://www.vietnam.vn/fr/3-5-ty-nguoi-dung-google-chrome-can-lam-viec-nay-khan-cap"
+                           class="veille-link" target="_blank" rel="noopener">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Article 4 -->
-                <div class="veille-card" data-category="mobile">
+                <div class="veille-card" data-category="outils">
                     <div class="veille-header">
-                        <span class="veille-category">Mobile</span>
+                        <span class="veille-category">Outils quotidiens</span>
                         <h3>React Native vs Flutter : le match 2024</h3>
                         <div class="veille-meta">
-                            <span>28 Février 2024</span>
-                            <span>12 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 28 février 2024</span>
+                            <span><i class="fas fa-clock"></i> 12 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Comparaison complète des deux frameworks mobiles leaders : performances, écosystème, courbe d'apprentissage et cas d'usage idéaux en 2024.</p>
                         <div class="veille-tags">
                             <span class="tag">React Native</span>
                             <span class="tag">Flutter</span>
                             <span class="tag">Mobile</span>
                         </div>
-                        <a href="" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="#" class="veille-link">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Article 5 -->
-                <div class="veille-card" data-category="ai">
+                <div class="veille-card" data-category="failles">
                     <div class="veille-header">
-                        <span class="veille-category">Quand l'IA part seule à la chasse aux bugs et vulnérabilités</span>
-                        <h3>l'IA outil important dans la recherche de vulnérabilités</h3>
+                        <span class="veille-category">Failles de sécurité</span>
+                        <h3>L'IA, outil clé dans la recherche de vulnérabilités</h3>
                         <div class="veille-meta">
-                            <span>10 Mars 2026</span>
-                            <span>7 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 10 mars 2026</span>
+                            <span><i class="fas fa-clock"></i> 7 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Quand l'IA part seule à la chasse aux bugs : comment les modèles de langage automatisent désormais la détection de failles et la chasse aux vulnérabilités.</p>
                         <div class="veille-tags">
-                            <span class="tag"></span>
-                            <span class="tag"></span>
-                            <span class="tag"></span>
+                            <span class="tag">IA</span>
+                            <span class="tag">Bug bounty</span>
+                            <span class="tag">Automatisation</span>
                         </div>
-                        <a href="https://www.informatiquenews.fr/quand-lia-part-seule-a-la-chasse-aux-bugs-et-vulnerabilites-109860" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="https://www.informatiquenews.fr/quand-lia-part-seule-a-la-chasse-aux-bugs-et-vulnerabilites-109860"
+                           class="veille-link" target="_blank" rel="noopener">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
 
                 <!-- Article 6 -->
-                <div class="veille-card" data-category="web">
+                <div class="veille-card" data-category="solutions">
                     <div class="veille-header">
-                        <span class="veille-category">ACTUALITÉS
-Google Gemini : une startup piégée par 82 000 $ de facture - DCOD | Cybersécurité</span>
-                        <h3></h3>
+                        <span class="veille-category">Solutions d'incidents</span>
+                        <h3>Google Gemini : une startup piégée par une facture de 82 000 $</h3>
                         <div class="veille-meta">
-                            <span>09 Mars 2026</span>
-                            <span>9 min de lecture</span>
+                            <span><i class="fas fa-calendar-alt"></i> 09 mars 2026</span>
+                            <span><i class="fas fa-clock"></i> 9 min de lecture</span>
                         </div>
                     </div>
                     <div class="veille-content">
-                        <p></p>
+                        <p>Une startup s'est retrouvée avec une facture colossale sur l'API Gemini suite à une mauvaise configuration des quotas — retour d'expérience et bonnes pratiques.</p>
                         <div class="veille-tags">
-                            <span class="tag"></span>
-                            <span class="tag"></span>
-                            <span class="tag"></span>
+                            <span class="tag">Gemini API</span>
+                            <span class="tag">Sécurité cloud</span>
+                            <span class="tag">Coûts</span>
                         </div>
-                        <a href="https://dcod.ch/2026/03/09/google-gemini-api/" class="veille-link">
-                            Lire l'article complet
-                            <i class="fas fa-arrow-right"></i>
+                        <a href="https://dcod.ch/2026/03/09/google-gemini-api/"
+                           class="veille-link" target="_blank" rel="noopener">
+                            Lire l'article complet <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
+
             </div>
+
+            <!-- CTA sujet de veille -->
+            <div class="veille-cta">
+                <a href="Fichiers/Veille technologique.html" target="_blank" class="btn">
+                    <i class="fas fa-file-alt"></i>
+                    Voir mon sujet de veille
+                </a>
+            </div>
+
         </div>
     </section>
 
-                            <a href="Fichiers/Veille technologique.html" target="_blank" class="btn">
-                                        Voir mon sujet de veille
-                            </a>
-
-
-
-
-
-
-    <!-- Section Outils -->
+    <!-- ── Outils ── -->
     <section id="outils">
         <div class="container">
             <div class="section-title">
@@ -903,48 +891,35 @@ Google Gemini : une startup piégée par 82 000 $ de facture - DCOD | Cybersécu
             </div>
             <div class="tools-grid">
                 <div class="tool-category">
-                    <h3><i class="fas fa-newspaper"></i>Actualités & Blogs</h3>
+                    <h3><i class="fas fa-newspaper"></i> Actualités &amp; Blogs</h3>
                     <div class="tool-items">
                         <div class="tool-item">
-                            <div class="tool-icon">
-                                <i class="fab fa-medium"></i>
-                            </div>
+                            <div class="tool-icon"><i class="fab fa-medium"></i></div>
                             <div class="tool-info">
                                 <h4>Medium</h4>
                                 <p>Articles techniques et analyses approfondies</p>
-                                <a href="https://medium.com/tag/informatique" target="_blank" class="btn">
+                                <a href="https://medium.com/tag/informatique" target="_blank" rel="noopener" class="btn btn-outline">
+                                    <i class="fas fa-external-link-alt"></i> Visiter
                                 </a>
                             </div>
                         </div>
                         <div class="tool-item">
-                            <a href="https://medium.com/tag/informatique" target="_blank" class="tool-link"></a>
-                                <div class="tool-icon">
-                              <i class="fab fa-dev"></i>
-                        </div>
-                            <div class="tool-icon">
-                                <i class="fab fa-dev"></i>
-                            </div>
+                            <div class="tool-icon"><i class="fas fa-bell"></i></div>
                             <div class="tool-info">
-                                <h4>Google alert</h4>
-                                <p> partages d'expériences</p>
-                                <a href="https://www.google.fr/alerts" target="_blank" class="btn">
+                                <h4>Google Alerts</h4>
+                                <p>Alertes personnalisées sur les failles Google</p>
+                                <a href="https://www.google.fr/alerts" target="_blank" rel="noopener" class="btn btn-outline">
+                                    <i class="fas fa-external-link-alt"></i> Visiter
                                 </a>
                             </div>
                         </div>
-                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Footer -->
+    <!-- ── Footer ── -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -963,23 +938,63 @@ Google Gemini : une startup piégée par 82 000 $ de facture - DCOD | Cybersécu
                     <ul class="contact-info">
                         <li>
                             <i class="fas fa-envelope"></i>
-                            honoreecoeurly@gmail.com</li>
-                        
+                            honoreecoeurly@gmail.com
+                        </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            Ile de France, France
+                            Île-de-France, France
                         </li>
                     </ul>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Google alert
+                <div class="footer-section footer-newsletter">
+                    <h3>Google Alerts</h3>
                     <p>Recevez mes dernières découvertes technologiques directement dans votre boîte mail.</p>
-                    <form style="margin-top: 15px;">
-                        <input type="email" placeholder="Votre email" style="padding: 10px; border: none; border-radius: 5px; width: 100%; margin-bottom: 10px;">
-                        <button type="submit" style
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Votre email" aria-label="Email pour la newsletter">
+                        <button type="button" class="btn">
+                            <i class="fas fa-paper-plane"></i> S'abonner
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Coeurly Honorée – Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks  = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Filtres articles
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const veilleCards = document.querySelectorAll('.veille-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                veilleCards.forEach(card => {
+                    const match = filter === 'all' || card.dataset.category === filter;
+                    card.style.display = match ? 'flex' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
