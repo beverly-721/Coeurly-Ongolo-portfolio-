@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coeurly ONGOLO- Technicienne système et réseau</title>
+    <title>Coeurly ONGOLO - Technicienne système et réseau</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -38,7 +38,229 @@
             padding: 0 20px;
         }
 
-        /* Header et Navigation */
+        /* ─── Cookie Banner ─── */
+        #cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: white;
+            border-top: 3px solid var(--primary);
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.12);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            transform: translateY(100%);
+            animation: slideUp 0.5s ease 0.8s forwards;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        #cookie-banner.hidden {
+            display: none;
+        }
+
+        .cookie-text {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .cookie-text p {
+            font-size: 0.92rem;
+            color: var(--neutral-medium);
+            line-height: 1.5;
+        }
+
+        .cookie-text strong {
+            color: var(--neutral-dark);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .cookie-text a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .cookie-btn-accept {
+            background: var(--primary);
+            color: white;
+        }
+
+        .cookie-btn-accept:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .cookie-btn-refuse {
+            background: transparent;
+            color: var(--neutral-medium);
+            border: 2px solid #ddd;
+        }
+
+        .cookie-btn-refuse:hover {
+            border-color: var(--neutral-medium);
+            color: var(--neutral-dark);
+        }
+
+        .cookie-btn-settings {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cookie-btn-settings:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ─── Cookie Détail Modal ─── */
+        #cookie-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #cookie-modal.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .cookie-modal-box {
+            background: white;
+            border-radius: 16px;
+            padding: 36px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .cookie-modal-box h3 {
+            font-size: 1.3rem;
+            color: var(--neutral-dark);
+            margin-bottom: 8px;
+        }
+
+        .cookie-modal-box > p {
+            color: var(--neutral-medium);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .cookie-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .cookie-toggle-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .cookie-toggle-info strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--neutral-dark);
+            margin-bottom: 2px;
+        }
+
+        .cookie-toggle-info span {
+            font-size: 0.82rem;
+            color: var(--neutral-medium);
+        }
+
+        /* Toggle switch */
+        .toggle {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            inset: 0;
+            background: #ddd;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: 0.3s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--primary);
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(20px);
+        }
+
+        .toggle input:disabled + .toggle-slider {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cookie-modal-actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        /* ─── Header ─── */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow);
@@ -118,7 +340,7 @@
             transition: var(--transition);
         }
 
-        /* Section Hero */
+        /* ─── Hero ─── */
         #hero {
             min-height: 100vh;
             display: flex;
@@ -173,6 +395,7 @@
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .btn {
@@ -190,7 +413,6 @@
             cursor: pointer;
             text-decoration: none;
             box-shadow: var(--shadow);
-            width: fit-content; 
             white-space: nowrap;
         }
 
@@ -209,42 +431,6 @@
         .btn-secondary:hover {
             background-color: var(--primary);
             color: white;
-        }
-
-        /* Bouton désactivé (RGPD en cours) */
-        .btn-disabled {
-            background-color: #ccc;
-            color: #888;
-            cursor: not-allowed;
-            box-shadow: none;
-            position: relative;
-        }
-
-        .btn-disabled:hover {
-            background-color: #ccc;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .btn-disabled::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--neutral-dark);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-        }
-
-        .btn-disabled:hover::after {
-            opacity: 1;
         }
 
         .hero-image {
@@ -300,31 +486,11 @@
             opacity: 0.1;
         }
 
-        .shape-1 {
-            width: 150px;
-            height: 150px;
-            background-color: var(--primary);
-            top: 10%;
-            right: 20%;
-        }
+        .shape-1 { width: 150px; height: 150px; background-color: var(--primary); top: 10%; right: 20%; }
+        .shape-2 { width: 100px; height: 100px; background-color: var(--secondary); top: 60%; right: 10%; }
+        .shape-3 { width: 80px; height: 80px; background-color: var(--accent); bottom: 20%; right: 30%; }
 
-        .shape-2 {
-            width: 100px;
-            height: 100px;
-            background-color: var(--secondary);
-            top: 60%;
-            right: 10%;
-        }
-
-        .shape-3 {
-            width: 80px;
-            height: 80px;
-            background-color: var(--accent);
-            bottom: 20%;
-            right: 30%;
-        }
-
-        /* Section À Propos */
+        /* ─── About ─── */
         #about {
             padding: 100px 0;
             background: white;
@@ -381,7 +547,7 @@
             font-weight: 500;
         }
 
-        /* Section Services */
+        /* ─── Services ─── */
         #services {
             padding: 100px 0;
             background: var(--neutral-light);
@@ -452,7 +618,7 @@
             line-height: 1.6;
         }
 
-        /* Footer */
+        /* ─── Footer ─── */
         footer {
             background: linear-gradient(135deg, var(--neutral-dark) 0%, #1a1a2e 100%);
             color: white;
@@ -483,13 +649,9 @@
             background-color: var(--primary);
         }
 
-        .footer-links {
-            list-style: none;
-        }
+        .footer-links { list-style: none; }
 
-        .footer-links li {
-            margin-bottom: 12px;
-        }
+        .footer-links li { margin-bottom: 12px; }
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.7);
@@ -502,9 +664,7 @@
             padding-left: 5px;
         }
 
-        .contact-info {
-            list-style: none;
-        }
+        .contact-info { list-style: none; }
 
         .contact-info li {
             margin-bottom: 15px;
@@ -550,6 +710,11 @@
             margin-top: 15px;
         }
 
+        .footer-section > p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+        }
+
         .copyright {
             text-align: center;
             padding-top: 30px;
@@ -558,21 +723,11 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive */
+        /* ─── Responsive ─── */
         @media (max-width: 968px) {
-            .hero-image {
-                display: none;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                text-align: right;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+            .hero-image { display: none; }
+            .hero-content { max-width: 100%; }
+            .about-content { grid-template-columns: 1fr; text-align: center; }
         }
 
         @media (max-width: 768px) {
@@ -590,46 +745,103 @@
                 gap: 15px;
             }
 
-            .nav-links.active {
-                display: flex;
-            }
+            .nav-links.active { display: flex; }
 
-            .hamburger {
-                display: flex;
-            }
+            .hamburger { display: flex; }
 
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
 
             .hero-btns {
-                justify-content: center;
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .about-stats {
-                grid-template-columns: 1fr;
+            .about-stats { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+
+            #cookie-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            .cookie-actions { width: 100%; }
+            .cookie-btn { flex: 1; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header et Navigation -->
+
+    <!-- ══════════════════════ COOKIE BANNER ══════════════════════ -->
+    <div id="cookie-banner" role="dialog" aria-label="Gestion des cookies">
+        <div class="cookie-text">
+            <strong>🍪 Ce site utilise des cookies</strong>
+            <p>
+                Nous utilisons des cookies pour améliorer votre expérience de navigation. 
+                Vous pouvez choisir d'accepter tous les cookies, les refuser, 
+                ou personnaliser vos préférences. 
+                <a href="Fichiers/rgpd.html">En savoir plus</a>
+            </p>
+        </div>
+        <div class="cookie-actions">
+            <button class="cookie-btn cookie-btn-settings" onclick="openCookieModal()">Personnaliser</button>
+            <button class="cookie-btn cookie-btn-refuse" onclick="refuseCookies()">Refuser</button>
+            <button class="cookie-btn cookie-btn-accept" onclick="acceptAllCookies()">Tout accepter</button>
+        </div>
+    </div>
+
+    <!-- ══════════════════════ COOKIE MODAL ══════════════════════ -->
+    <div id="cookie-modal" role="dialog" aria-modal="true" aria-label="Paramètres des cookies">
+        <div class="cookie-modal-box">
+            <h3>Paramètres des cookies</h3>
+            <p>Choisissez les types de cookies que vous souhaitez autoriser.</p>
+
+            <div class="cookie-toggle-row">
+                <div class="cookie-toggle-info">
+                    <strong>Cookies essentiels</strong>
+                    <span>Nécessaires au bon fonctionnement du site. Toujours actifs.</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked disabled>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-toggle-row">
+                <div class="cookie-toggle-info">
+                    <strong>Cookies analytiques</strong>
+                    <span>Permettent d'analyser la fréquentation et d'améliorer le site.</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="toggle-analytics">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-toggle-row">
+                <div class="cookie-toggle-info">
+                    <strong>Cookies de préférences</strong>
+                    <span>Mémorisent vos préférences pour personnaliser votre visite.</span>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" id="toggle-prefs">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+
+            <div class="cookie-modal-actions">
+                <button class="cookie-btn cookie-btn-refuse" onclick="closeCookieModal()">Annuler</button>
+                <button class="cookie-btn cookie-btn-accept" onclick="saveCustomCookies()">Enregistrer mes choix</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════ HEADER ══════════════════════ -->
     <header>
         <div class="container">
             <nav>
@@ -653,15 +865,13 @@
         </div>
     </header>
 
-    <!-- Section Hero -->
+    <!-- ══════════════════════ HERO ══════════════════════ -->
     <section id="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Bonjour, je suis <span>Coeurly ONGOLO</span></h1>
                 <div class="subtitle">Technicienne Systèmes et Réseaux</div>
-                <p>Technicienne Systèmes et Réseaux. Je m'occupe de l'installation, de la configuration et de la maintenance des infrastructures informatiques, que ce soit les serveurs, les postes clients ou les équipements réseau. J'aime particulièrement travailler sur la résolution de problèmes et l'optimisation des systèmes pour assurer la disponibilité et la sécurité des services.</p>
-
-                <!-- ✅ CORRIGÉ : tous les boutons sont bien dans .hero-btns -->
+                <p>Je m'occupe de l'installation, de la configuration et de la maintenance des infrastructures informatiques, que ce soit les serveurs, les postes clients ou les équipements réseau. J'aime particulièrement travailler sur la résolution de problèmes et l'optimisation des systèmes pour assurer la disponibilité et la sécurité des services.</p>
                 <div class="hero-btns">
                     <a href="projets.html" class="btn">
                         <i class="fas fa-rocket"></i>
@@ -669,7 +879,7 @@
                     </a>
                     <a href="Fichiers/Tableau_de_synthese_ONGOLO_Coeurly.pdf" target="_blank" class="btn btn-secondary">
                         <i class="fas fa-file-alt"></i>
-                        Voir mon Tableau de Synthèse
+                        Tableau de Synthèse
                     </a>
                 </div>
             </div>
@@ -682,7 +892,7 @@
         </div>
     </section>
 
-    <!-- Section À Propos -->
+    <!-- ══════════════════════ ABOUT ══════════════════════ -->
     <section id="about">
         <div class="container">
             <div class="about-content">
@@ -706,7 +916,7 @@
         </div>
     </section>
 
-    <!-- Section Services -->
+    <!-- ══════════════════════ SERVICES ══════════════════════ -->
     <section id="services">
         <div class="container">
             <div class="section-title">
@@ -739,7 +949,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ══════════════════════ FOOTER ══════════════════════ -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -760,33 +970,30 @@
                             <i class="fas fa-envelope"></i>
                             honoreecoeurly@gmail.com
                         </li>
-                        
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            Ile de France, France
+                            Île-de-France, France
                         </li>
                     </ul>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Disponibilité</h3>
                     <p>Disponible à partir de Septembre 2026.</p>
                     <div class="footer-btns">
-                        <!-- ✅ CORRIGÉ : mailto: au lieu de contact.html inexistant -->
                         <a href="mailto:honoreecoeurly@gmail.com?subject=Projet%20-%20Prise%20de%20contact" class="btn">
                             <i class="fas fa-paper-plane"></i>
                             Discutons de votre projet
                         </a>
-                        <!-- ✅ CORRIGÉ : bouton désactivé avec tooltip -->
-                        <a href="Fichiers/rgpd.html" class="btn">
+                        <a href="Fichiers/rgpd.html" class="btn btn-secondary">
                             <i class="fas fa-shield-alt"></i>
-                            RGPD
-                        </span>
+                            Politique RGPD
+                        </a>
                     </div>
                 </div>
             </div>
@@ -797,6 +1004,54 @@
     </footer>
 
     <script>
+        /* ── Cookie consent ── */
+        const COOKIE_KEY = 'coeurly_cookie_consent';
+
+        function hideBanner() {
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        function acceptAllCookies() {
+            localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: true, prefs: true, timestamp: Date.now() }));
+            hideBanner();
+        }
+
+        function refuseCookies() {
+            localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: false, prefs: false, timestamp: Date.now() }));
+            hideBanner();
+        }
+
+        function openCookieModal() {
+            const saved = JSON.parse(localStorage.getItem(COOKIE_KEY) || '{}');
+            document.getElementById('toggle-analytics').checked = saved.analytics || false;
+            document.getElementById('toggle-prefs').checked = saved.prefs || false;
+            document.getElementById('cookie-modal').classList.add('open');
+        }
+
+        function closeCookieModal() {
+            document.getElementById('cookie-modal').classList.remove('open');
+        }
+
+        function saveCustomCookies() {
+            const analytics = document.getElementById('toggle-analytics').checked;
+            const prefs = document.getElementById('toggle-prefs').checked;
+            localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics, prefs, timestamp: Date.now() }));
+            closeCookieModal();
+            hideBanner();
+        }
+
+        // Fermer le modal en cliquant en dehors
+        document.getElementById('cookie-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeCookieModal();
+        });
+
+        // Afficher le banner seulement si pas encore de choix
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem(COOKIE_KEY);
+            if (consent) hideBanner();
+        });
+
+        /* ── Navigation ── */
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -823,6 +1078,7 @@
             }
         });
 
+        /* ── Compteur stats ── */
         const observerOptions = {
             threshold: 0.5,
             rootMargin: '0px 0px -50px 0px'
@@ -831,12 +1087,10 @@
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const stats = document.querySelectorAll('.stat-number');
-                    stats.forEach(stat => {
+                    document.querySelectorAll('.stat-number').forEach(stat => {
                         const target = parseInt(stat.textContent);
                         let current = 0;
                         const increment = target / 50;
-                        
                         const timer = setInterval(() => {
                             current += increment;
                             if (current >= target) {
@@ -852,8 +1106,7 @@
             });
         }, observerOptions);
 
-        const aboutSection = document.querySelector('#about');
-        statsObserver.observe(aboutSection);
+        statsObserver.observe(document.querySelector('#about'));
     </script>
 </body>
 </html>
