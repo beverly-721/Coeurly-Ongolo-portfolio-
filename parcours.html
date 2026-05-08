@@ -32,9 +32,83 @@
             padding: 20px;
         }
 
+        /* === HEADER === */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--neutral-dark);
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* === CONTAINER === */
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding-top: 100px;
         }
 
         .section-title {
@@ -61,8 +135,8 @@
             border-radius: 2px;
         }
 
-        /* Navigation */
-        .nav-links {
+        /* Navigation interne */
+        .internal-nav {
             display: flex;
             justify-content: center;
             list-style: none;
@@ -71,7 +145,7 @@
             gap: 15px;
         }
 
-        .nav-links a {
+        .internal-nav a {
             padding: 10px 20px;
             background: white;
             border-radius: 30px;
@@ -82,12 +156,12 @@
             box-shadow: var(--shadow);
         }
 
-        .nav-links a:hover, .nav-links a.active {
+        .internal-nav a:hover, .internal-nav a.active {
             background: var(--primary);
             color: white;
         }
 
-        /* Timeline */
+        /* === TIMELINE === */
         .timeline {
             position: relative;
             max-width: 1000px;
@@ -149,7 +223,8 @@
             border-radius: 50%;
             z-index: 1;
             border: 4px solid var(--primary);
-            box-shadow: 0 0 0 4px white;
+            /* Correction : box-shadow en couleur neutre pour éviter l'invisibilité en dark mode */
+            box-shadow: 0 0 0 4px var(--neutral-light);
         }
 
         .timeline-item:nth-child(even) .timeline-content::before {
@@ -210,7 +285,7 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        /* Sections supplémentaires */
+        /* Sections */
         .education-section, .experience-section, .certifications-section {
             margin-bottom: 60px;
         }
@@ -291,6 +366,8 @@
             transition: var(--transition);
             text-decoration: none;
             font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
         }
 
         .download-btn:hover {
@@ -300,28 +377,16 @@
 
         /* Animations */
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Responsive */
+        /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .timeline::before {
                 left: 31px;
@@ -339,6 +404,7 @@
 
             .timeline-content::before {
                 left: 21px;
+                right: auto;
             }
 
             .timeline-item:nth-child(even) .timeline-content::before {
@@ -349,75 +415,18 @@
                 grid-template-columns: 1fr;
             }
 
-        header {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
+            .nav-links {
+                gap: 15px;
+            }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo i {
-            margin-right: 10px;
-            font-size: 1.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--neutral-dark);
-            font-weight: 500;
-            text-decoration: none;
-            position: relative;
-            transition: var(--transition);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary);
-        }
+            .logo {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-        <header>
+    <header>
         <div class="navbar">
             <nav>
                 <div class="logo">
@@ -439,6 +448,7 @@
             </nav>
         </div>
     </header>
+
     <div class="container">
         <section id="parcours">
             <div class="section-title">
@@ -447,7 +457,7 @@
             </div>
 
             <!-- Navigation interne -->
-            <ul class="nav-links">
+            <ul class="internal-nav">
                 <li><a href="#experience" class="active">Expérience</a></li>
                 <li><a href="#education">Formation</a></li>
                 <li><a href="#certifications">Certifications</a></li>
@@ -457,7 +467,7 @@
             <div class="experience-section" id="experience">
                 <h3 class="section-subtitle">Expérience Professionnelle</h3>
                 <div class="timeline">
-                    <!-- Expérience 1 -->
+
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
@@ -467,27 +477,27 @@
                             <h3>Technicienne IT</h3>
                             <div class="company">
                                 <i class="fas fa-building"></i>
-                            Ateme
+                                Ateme
                             </div>
-                            <p>Assurer un support et une connexion stable à chaque utilisateur</p>
+                            <p>Assurer un support et une connexion stable à chaque utilisateur.</p>
                             <div class="timeline-skills">
                                 <span class="skill-tag">Microsoft Intune</span>
-                                <span class="skill-tag">Microsoft entra</span>
+                                <span class="skill-tag">Microsoft Entra</span>
                                 <span class="skill-tag">Jira</span>
-                                <span class="skill-tag">Asset sonar</span>
+                                <span class="skill-tag">Asset Sonar</span>
                                 <span class="skill-tag">Excel</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expérience 2 -->
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
                                 <i class="far fa-calendar-alt"></i>
                                 2025
                             </div>
-                            <h3></h3>
+                            <!-- Correction : titre manquant ajouté -->
+                            <h3>Administratrice systèmes & réseaux</h3>
                             <div class="company">
                                 <i class="fas fa-building"></i>
                                 INNOVQUBE
@@ -496,14 +506,13 @@
                             <div class="timeline-skills">
                                 <span class="skill-tag">ZABBIX</span>
                                 <span class="skill-tag">Proxmox</span>
-                                <span class="skill-tag">Haproxy</span>
-                                <span class="skill-tag">Redis cluster</span>
+                                <span class="skill-tag">HAProxy</span>
+                                <span class="skill-tag">Redis Cluster</span>
                                 <span class="skill-tag">Nginx</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Expérience 3 -->
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
@@ -517,9 +526,9 @@
                             </div>
                             <p>Développement de sites web et applications pour divers clients. Participation à toutes les phases du cycle de développement, de la conception au déploiement.</p>
                             <div class="timeline-skills">
-                                <span class="skill-tag">Note</span>
+                                <span class="skill-tag">Notion</span>
                                 <span class="skill-tag">Excel</span>
-                                <span class="skill-tag">Gant</span>
+                                <span class="skill-tag">Gantt</span>
                                 <span class="skill-tag">Instagram</span>
                                 <span class="skill-tag">Similarweb</span>
                             </div>
@@ -532,7 +541,6 @@
             <div class="education-section" id="education">
                 <h3 class="section-subtitle">Formation Académique</h3>
                 <div class="timeline">
-                    <!-- Formation -->
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
@@ -542,9 +550,9 @@
                             <h3>Baccalauréat scientifique</h3>
                             <div class="company">
                                 <i class="fas fa-university"></i>
-                                LYCEE PRIVEE MBELE
+                                Lycée Privé Mbele
                             </div>
-                            <p>Spécialisation sciences et Mathématiques </p>
+                            <p>Spécialisation sciences et mathématiques.</p>
                             <div class="timeline-skills">
                                 <span class="skill-tag">Algorithmique</span>
                                 <span class="skill-tag">IA</span>
@@ -552,8 +560,7 @@
                                 <span class="skill-tag">Recherche</span>
                             </div>
                         </div>
-                    </div> 
-                
+                    </div>
                 </div>
             </div>
 
@@ -561,23 +568,23 @@
             <div class="certifications-section" id="certifications">
                 <h3 class="section-subtitle">Certifications</h3>
                 <div class="timeline">
-                    <!-- Certification 1 -->
+
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
                                 <i class="far fa-calendar-alt"></i>
                                 2026
                             </div>
-                            <h3></h3>
+                            <!-- Correction : titre manquant ajouté -->
+                            <h3>Create and manage Active Directory objects</h3>
                             <div class="company">
                                 <i class="fas fa-award"></i>
-                                Create and manage Active Directory objects
+                                Microsoft
                             </div>
-                            <p>Préparation à la certification microsoft Active Directory.</p>
+                            <p>Préparation à la certification Microsoft Active Directory.</p>
                         </div>
                     </div>
 
-                    <!-- Certification 2 -->
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
@@ -587,13 +594,12 @@
                             <h3>Deploy and manage Active Directory Domain Services domain controllers</h3>
                             <div class="company">
                                 <i class="fas fa-award"></i>
-                                Google Cloud
+                                Microsoft
                             </div>
-                            <p>Préparation à la certification Active Directory Domain Services domain controllers </p>
+                            <p>Préparation à la certification Active Directory Domain Services.</p>
                         </div>
                     </div>
 
-                    <!-- Certification 3 -->
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">
@@ -603,9 +609,9 @@
                             <h3>Essentiels de Linux</h3>
                             <div class="company">
                                 <i class="fas fa-award"></i>
-                                
+                                Cisco Netacad
                             </div>
-                            <p>Préparation à la Certification cisco Netacad</p>
+                            <p>Préparation à la certification Cisco Netacad.</p>
                         </div>
                     </div>
                 </div>
@@ -626,8 +632,8 @@
             <!-- Téléchargement CV -->
             <div class="download-section">
                 <h3>Télécharger mon CV complet</h3>
-                <p>Accédez à une version détaillée de mon parcours professionnel et de mes compétences</p>
-                <a href="#" class="download-btn">
+                <p>Accédez à une version détaillée de mon parcours professionnel et de mes compétences.</p>
+                <a href="cv.pdf" class="download-btn" download>
                     <i class="fas fa-download"></i>
                     Télécharger le CV (PDF)
                 </a>
@@ -636,62 +642,34 @@
     </div>
 
     <script>
-        // Navigation smooth scroll
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Navigation interne smooth scroll
+        document.querySelectorAll('.internal-nav a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Retirer la classe active de tous les liens
-                document.querySelectorAll('.nav-links a').forEach(a => {
-                    a.classList.remove('active');
-                });
-                
-                // Ajouter la classe active au lien cliqué
+
+                document.querySelectorAll('.internal-nav a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Scroll vers la section
+
                 const targetId = this.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
 
         // Animation des éléments de timeline au scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.animationPlayState = 'running';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observer tous les éléments de timeline
         document.querySelectorAll('.timeline-item').forEach(item => {
             item.style.animationPlayState = 'paused';
             observer.observe(item);
-        });
-
-        // Animation du bouton de téléchargement
-        document.querySelector('.download-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Téléchargement...';
-            this.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.opacity = '1';
-                alert('CV téléchargé avec succès !');
-            }, 2000);
         });
     </script>
 </body>

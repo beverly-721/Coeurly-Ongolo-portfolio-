@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF6B8B;
+            --secondary: #6A5ACD;
+            --accent: #20B2AA;
+            --neutral-light: #FDF6FA;
+            --neutral-dark: #2D2B42;
+            --neutral-medium: #8A7F9B;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--neutral-dark);
+            background-color: var(--neutral-light);
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── NAVBAR ── */
+        header {
+            background-color: rgba(255, 255, 255, 0.97);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .logo .logo-bracket {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            color: var(--neutral-dark);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); font-weight: 600; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--neutral-dark);
+            border-radius: 2px;
+        }
+
+        /* ── SECTION ── */
+        #projets { padding: 50px 0; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--neutral-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        /* ── TRELLO BTN ── */
+        .trello-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        /* ── PROJECT GRID ── */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* ── ICON BANNER ── */
+        .project-img {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--card-bg, #FFF0F4);
+        }
+
+        /* Motif de points subtil */
+        .project-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, var(--card-dot, rgba(255,107,139,0.18)) 1.5px, transparent 1.5px);
+            background-size: 22px 22px;
+        }
+
+        /* Halo lumineux derrière l'icône */
+        .project-img::after {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--card-glow, rgba(255,107,139,0.22)) 0%, transparent 70%);
+        }
+
+        .project-img i {
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+            color: var(--card-icon, var(--primary));
+            filter: drop-shadow(0 4px 10px var(--card-shadow, rgba(255,107,139,0.3)));
+        }
+
+        /* Variantes couleur */
+        .card-pink   { --card-bg:#FFF0F4; --card-dot:rgba(255,107,139,0.18); --card-icon:#FF6B8B; --card-glow:rgba(255,107,139,0.2);  --card-shadow:rgba(255,107,139,0.3); }
+        .card-purple { --card-bg:#F2F0FF; --card-dot:rgba(106,90,205,0.15);  --card-icon:#6A5ACD; --card-glow:rgba(106,90,205,0.2);   --card-shadow:rgba(106,90,205,0.3); }
+        .card-teal   { --card-bg:#EFF9F8; --card-dot:rgba(32,178,170,0.15);  --card-icon:#20B2AA; --card-glow:rgba(32,178,170,0.2);   --card-shadow:rgba(32,178,170,0.3); }
+        .card-blue   { --card-bg:#EFF4FF; --card-dot:rgba(59,130,246,0.15);  --card-icon:#3B82F6; --card-glow:rgba(59,130,246,0.2);   --card-shadow:rgba(59,130,246,0.3); }
+        .card-orange { --card-bg:#FFF5EE; --card-dot:rgba(249,115,22,0.15);  --card-icon:#F97316; --card-glow:rgba(249,115,22,0.2);   --card-shadow:rgba(249,115,22,0.3); }
+        .card-green  { --card-bg:#F0FBF4; --card-dot:rgba(34,197,94,0.15);   --card-icon:#22C55E; --card-glow:rgba(34,197,94,0.2);    --card-shadow:rgba(34,197,94,0.3); }
+        .card-red    { --card-bg:#FFF0F0; --card-dot:rgba(239,68,68,0.15);   --card-icon:#EF4444; --card-glow:rgba(239,68,68,0.2);    --card-shadow:rgba(239,68,68,0.3); }
+
+        .project-content {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 {
+            color: var(--neutral-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .project-content p {
+            color: var(--neutral-medium);
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .tech-tag {
+            background-color: var(--neutral-light);
+            color: var(--neutral-dark);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            font-weight: 500;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: rgba(255,255,255,0.98);
+                padding: 20px;
+                box-shadow: var(--shadow);
+                gap: 16px;
+            }
+            .nav-links.open { display: flex; }
+            .hamburger { display: flex; }
+            .projects-container { grid-template-columns: 1fr; }
+            .project-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-bracket">&lt;/&gt;</span> Coeurly ONGOLO
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="projets.html" class="active">Projets</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="competences.html">Compétences</a></li>
+                <li><a href="veille.html">Veille</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="projets">
+
+            <div class="section-title">
+                <h2>Mes Projets</h2>
+            </div>
+
+            <div class="trello-wrapper">
+                <a href="https://trello.com/b/F0CrEKAY/t%C3%A2che-ap2" target="_blank" class="btn">
+                    <i class="fab fa-trello"></i>
+                    Voir mon Trello
+                </a>
+            </div>
+
+            <div class="projects-container">
+
+                <!-- Projet 1 — Billetterie -->
+                <div class="project-card">
+                    <div class="project-img card-pink">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Création d'un site de vente de billets</h3>
+                        <p>Site de vente de billets pour une exposition sur le Brutalisme</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://beverly-721.github.io/Le-brutalisme.github.io/" target="_blank" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 2 — SUPERVIZ / VELAN -->
+                <div class="project-card">
+                    <div class="project-img card-purple">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Projet "SUPERVIZ" et "VELAN"</h3>
+                        <p>Création d'une entreprise fictive visant à fournir des solutions de supervision et de segmentation réseau</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Cisco Packet Tracer</span>
+                            <span class="tech-tag">Trello</span>
+                            <span class="tech-tag">Canva</span>
+                            <span class="tech-tag">Virtual Box</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/VICTUS.pdf" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                            <a href="Fichiers/Schema_Plateforme A 1.pdf" class="btn btn-secondary">
+                                <i class="fas fa-project-diagram"></i> Schéma Cisco
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 3 — HAProxy -->
+                <div class="project-card">
+                    <div class="project-img card-teal">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Haproxy 3.2</h3>
+                        <p>Installation d'un serveur HAProxy afin d'assurer une répartition de charge entre trois serveurs web</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Proxmox</span>
+                            <span class="tech-tag">Google</span>
+                            <span class="tech-tag">Word</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/Documentation Haproxy.pdf" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                            <a href="Fichiers/image (7).png" class="btn btn-secondary">
+                                <i class="fas fa-network-wired"></i> Schéma réseau
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 4 — Zabbix -->
+                <div class="project-card">
+                    <div class="project-img card-blue">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Zabbix</h3>
+                        <p>Mise en place d'un outil de supervision réseau</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Proxmox</span>
+                            <span class="tech-tag">Google</span>
+                            <span class="tech-tag">Word</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/Documentation Zabbix.pdf" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 5 — Postes Windows/Linux -->
+                <div class="project-card">
+                    <div class="project-img card-orange">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Préparation et configuration de postes de travail</h3>
+                        <p>Préparation de postes et mise à jour des postes Windows et Linux</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Boot Windows</span>
+                            <span class="tech-tag">Boot Linux</span>
+                            <span class="tech-tag">Word</span>
+                            <span class="tech-tag">Google</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/01_Preparation_Postes_Windows_Linux.pdf" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 6 — Application d'alerte -->
+                <div class="project-card">
+                    <div class="project-img card-red">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Application d'alerte</h3>
+                        <p>Application sécurisée d'alertes contre les agressions</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">NLP</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/diagramme_gatlin.drawio.pdf" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet 7 — INFISICAL -->
+                <div class="project-card">
+                    <div class="project-img card-green">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>INFISICAL</h3>
+                        <p>Application sécurisée d'échanges d'accès restreint</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Gitlab</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">LXC</span>
+                            <span class="tech-tag">Accès restreint</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="Fichiers/02_Infisical_Integration_GitLab.pdf" target="_blank" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Voir le projet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+        hamburger.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') navLinks.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
